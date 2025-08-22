@@ -62,7 +62,7 @@ docker run --rm -it \
   --dns-ovh-credentials /secrets/ovh.ini \
   --dns-ovh-propagation-seconds 300 \
   -m you@example.com --agree-tos --no-eff-email \
-  -d n8n-rp.bh-systems.be
+  -d n8n-rp.bh-xxxx.be
 ```
 
 ### 2.2 Multiple SANs (same cert)
@@ -119,13 +119,13 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
 
-      # n8n-rp.bh-systems.be
-      - /opt/certbot/conf/live/n8n-rp.bh-systems.be/fullchain.pem:/etc/nginx/ssl/n8n-rp-fullchain.pem:ro
-      - /opt/certbot/conf/live/n8n-rp.bh-systems.be/privkey.pem:/etc/nginx/ssl/n8n-rp-privkey.pem:ro
+      # n8n-rp.bh-xxxx.be
+      - /opt/certbot/conf/live/n8n-rp.bh-xxxx.be/fullchain.pem:/etc/nginx/ssl/n8n-rp-fullchain.pem:ro
+      - /opt/certbot/conf/live/n8n-rp.bh-xxxx.be/privkey.pem:/etc/nginx/ssl/n8n-rp-privkey.pem:ro
 
       # (repeat for other domains you issued)
-      # - /opt/certbot/conf/live/support.bh-systems.be/fullchain.pem:/etc/nginx/ssl/support-fullchain.pem:ro
-      # - /opt/certbot/conf/live/support.bh-systems.be/privkey.pem:/etc/nginx/ssl/support-privkey.pem:ro
+      # - /opt/certbot/conf/live/support.bh-xxxx.be/fullchain.pem:/etc/nginx/ssl/support-fullchain.pem:ro
+      # - /opt/certbot/conf/live/support.bh-xxxx.be/privkey.pem:/etc/nginx/ssl/support-privkey.pem:ro
     ports:
       - "80:80"
       - "443:443"
@@ -141,7 +141,7 @@ services:
 server {
   listen 443 ssl;
   http2 on;
-  server_name n8n-rp.bh-systems.be;
+  server_name n8n-rp.bh-xxxx.be;
 
   ssl_certificate     /etc/nginx/ssl/n8n-rp-fullchain.pem;
   ssl_certificate_key /etc/nginx/ssl/n8n-rp-privkey.pem;
@@ -251,7 +251,7 @@ Add (runs daily at 03:15):
 * **Verify cert on the host**
 
   ```bash
-  sudo openssl x509 -noout -text -in /opt/certbot/conf/live/n8n-rp.bh-systems.be/fullchain.pem | head -n 20
+  sudo openssl x509 -noout -text -in /opt/certbot/conf/live/n8n-rp.bh-xxxx.be/fullchain.pem | head -n 20
   ```
 
 ---
